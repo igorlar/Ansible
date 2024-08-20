@@ -1,0 +1,12 @@
+postgresql:
+    parameters:
+        max_connections: {{ ansible_processor_cores * 5 }}
+        max_locks_per_transaction: '64'
+        max_worker_processes: {{ ansible_processor_cores * 3 }}
+        max_prepared_transactions: {{ (ansible_processor_cores * 6) if ansible_os_family == "Debian" else (ansible_processor_cores * 4) }}
+        wal_level: 'replica'
+        wal_log_hints: on
+        track_commit_timestamp: off
+        wal_keep_size: '8GB'
+        logical_decoding_work_mem: "{{ (ansible_memtotal_mb / 1024 / 4) | int }}GB"
+        auth_activity_period: '60'

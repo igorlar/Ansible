@@ -1,0 +1,10 @@
+---
+- name: Check root filesystem disk space
+  ansible.builtin.shell: "df --output=avail -BG / | tail -n 1 | awk '{print $1}'"
+  register: root_disk_space
+  changed_when: false
+
+- name: Fail if root filesystem does not have at least 10GB free space
+  ansible.builtin.fail:
+    msg: "Root filesystem has less than {{ min_disk_space_gb }} GB free space: {{ root_disk_space.stdout }}"
+  when: root_disk_space.stdout | int < min_disk_space_gb

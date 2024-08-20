@@ -1,0 +1,11 @@
+---
+- name: Check if /tmp has exec option in /etc/fstab
+  ansible.builtin.command: "grep -E '^/.* /tmp.* defaults.*exec' /etc/fstab"
+  register: fstab_tmp_exec
+  failed_when: fstab_tmp_exec.rc != 0
+  changed_when: false
+
+- name: Fail if /tmp does not have exec option in /etc/fstab
+  ansible.builtin.fail:
+    msg: "/tmp does not have exec option in /etc/fstab"
+  when: fstab_tmp_exec.rc != 0

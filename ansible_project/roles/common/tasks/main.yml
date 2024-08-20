@@ -1,0 +1,17 @@
+---
+- include_tasks: check_disk_space.yml
+- include_tasks: check_fstab_tmp_exec.yml
+- include_tasks: install_packages.yml
+
+- name: Gather facts about the system
+  ansible.builtin.setup:
+    gather_subset:
+      - hardware
+
+- name: Template PostgreSQL config file based on system specs
+  ansible.builtin.template:
+    src: /ansible_project/roles/common/templates/pg.conf.j2
+    dest: /etc/postgres/test_config.conf
+    owner: postgres
+    group: postgres
+    mode: '0644'

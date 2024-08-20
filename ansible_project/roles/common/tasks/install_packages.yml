@@ -1,0 +1,12 @@
+---
+- name: Install required packages on RHEL
+  ansible.builtin.yum:
+    name: "{{ rhel_packages }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install required packages on Ubuntu
+  ansible.builtin.apt:
+    name: "{{ ubuntu_packages }}"
+    state: present
+  when: ansible_os_family == "Debian"

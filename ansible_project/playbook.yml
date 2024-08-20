@@ -1,0 +1,6 @@
+---
+- name: First Ansible project
+  hosts: all
+  become: true
+  roles:
+    - common

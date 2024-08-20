@@ -1,0 +1,37 @@
+---
+min_disk_space_gb: 10
+
+rhel_packages:
+  - expect
+  - jq
+  - jsoncpp
+  - libcurl
+  - libyaml
+  - logrotate
+  - nmap
+  - openssl
+  - perl-DBD-Pg
+  - perl-DBI
+  - perl-Time-HiRes
+  - python3-pip
+  - python36
+  - python36-devel
+  - python36-virtualenv
+  - rsyslog
+  - uuid
+
+ubuntu_packages:
+  - autoconf
+  - automake
+  - jq
+  - libcrack2
+  - libcurl
+  - libjsoncpp
+  - libtool
+  - libyaml-0-2
+  - logrotate
+  - openssl
+  - perl-openssl-defaults
+  - python3-pip
+  - python3.6
+  - python3.6-dev
